@@ -1,8 +1,23 @@
 import React, { Component } from "react";
+import "./styles/index.css";
 
 class TodoItems extends Component {
 	createTasks(item) {
-		return <li key={item.key}>{item.text}</li>;
+		return (
+			<li onClick={() => this.delete(item.key)} key={item.key}>
+				{item.text}
+			</li>
+		);
+	}
+
+	constructor(props) {
+		super(props);
+
+		this.createTasks = this.createTasks.bind(this);
+	}
+
+	delete(key) {
+		this.props.delete(key);
 	}
 
 	render() {
